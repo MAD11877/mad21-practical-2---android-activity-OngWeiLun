@@ -6,17 +6,33 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        User user = new User("John","25 year old male",12345,true);
+        loadProfile(user);
     }
 
-    public void anyName(View view){
-        //TextView txt = findViewById();//R.id.'idofbutton'
-        //txt.setText("Hello World");
+    public void loadProfile(User user){
+        TextView name = findViewById(R.id.nameBox);
+        TextView desc = findViewById(R.id.descBox);
+        name.setText(user.name);
+        desc.setText((user.description));
+    }
+
+    public void following(View view){
+        TextView txt = findViewById(R.id.followButton);
+        if (txt.getText().toString() == "FOLLOW"){
+            txt.setText("UNFOLLOW");
+        }
+        else{
+            txt.setText("FOLLOW");
+        }
     }
 
     public class User{
