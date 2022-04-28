@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -14,15 +15,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        User user = new User("John","25 year old male",12345,true);
+        User user = new User("John","25 year old male",12345,false);
         loadProfile(user);
     }
 
     public void loadProfile(User user){
         TextView name = findViewById(R.id.nameBox);
         TextView desc = findViewById(R.id.descBox);
+        TextView followButton = findViewById(R.id.followButton);
         name.setText(user.name);
         desc.setText((user.description));
+        if(user.getFollowed() == true){
+            followButton.setText("UNFOLLOW");
+        }
+        else{
+            followButton.setText("FOLLOW");
+        }
     }
 
     public void following(View view){
