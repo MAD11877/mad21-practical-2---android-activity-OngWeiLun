@@ -2,10 +2,12 @@ package sg.edu.np.mad.p02.activity1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -15,15 +17,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        User user = new User("John","25 year old male",12345,false);
+        User user = new User("John", "25 year old male", 12345, false);
         loadProfile(user);
+
+        Button messageButton = (Button) findViewById(R.id.messageButton);
+
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent message = new Intent(MainActivity.this,
+                        MessageGroup.class);
+                startActivity(message);
+            }
+        });
     }
 
     public void loadProfile(User user){
+        Intent receivingEnd = getIntent();
+        String num = receivingEnd.getStringExtra("number");
         TextView name = findViewById(R.id.nameBox);
         TextView desc = findViewById(R.id.descBox);
         TextView followButton = findViewById(R.id.followButton);
-        name.setText(user.name);
+        name.setText(user.name + num);
         desc.setText((user.description));
         if(user.getFollowed() == true){
             followButton.setText("UNFOLLOW");
@@ -37,13 +52,15 @@ public class MainActivity extends AppCompatActivity {
         TextView txt = findViewById(R.id.followButton);
         if (txt.getText().toString() == "FOLLOW"){
             txt.setText("UNFOLLOW");
+            Toast.makeText(getApplicationContext(),"FOLLOWED", Toast.LENGTH_SHORT).show();
         }
         else{
             txt.setText("FOLLOW");
+            Toast.makeText(getApplicationContext(), "UNFOLLOWED",Toast.LENGTH_SHORT).show();
         }
     }
 
-    public class User{
+    public static class User{
 
         String name;
         String description;
