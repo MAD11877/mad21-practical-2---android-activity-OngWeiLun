@@ -1,6 +1,8 @@
 package sg.edu.np.mad.p02.activity1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,22 +16,24 @@ public class MessageGroup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_group);
 
-        Button group1 = findViewById(R.id.group1);
-        Button group2 = findViewById(R.id.group2);
+        Button grp2 = findViewById(R.id.group2);
+        Button grp1 = findViewById(R.id.group1);
 
-        group1.setOnClickListener(new View.OnClickListener() {
+
+        grp1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent group1 = new Intent(MessageGroup.this,
-                        Group1.class);
+                getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flMessage,Group1.class,null)
+                        .commit();
             }
         });
-
-        group2.setOnClickListener(new View.OnClickListener() {
+        grp2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent group2 = new Intent(MessageGroup.this,
-                        Group2.class);
+                getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flMessage,Group2.class,null)
+                        .commit();
             }
         });
 

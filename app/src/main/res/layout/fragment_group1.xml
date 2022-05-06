@@ -6,16 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".Group1">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:src="@tools:sample/avatars" />
-
+        android:src="@drawable/ic_launcher_background" />
 </FrameLayout>
